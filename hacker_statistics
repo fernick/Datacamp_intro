@@ -22,8 +22,22 @@ for i in range(500) :
 np_aw_t = np.transpose(np.array(all_walks))
 
 # Select last row from np_aw_t: ends
-ends = np_aw_t[0,-1]
+ends = np_aw_t[-1,:]
 
 # Plot histogram of ends, display plot
 plt.hist(ends)
 plt.show()
+
+# calculating the probability that I will reach 60 steps
+# select in ends how often 60 and above is reached, store this in great_60 variable
+great_60=ends[ends>=60]
+len(great_60)
+392
+
+## now calculate the probability of winning the bet
+prob_odd=len(great_60)/500
+
+print(prob_odd)
+0.784
+
+# I have 78.4 % of winning the bet to reach 60 steps
