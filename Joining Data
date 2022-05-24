@@ -100,5 +100,17 @@ orig_seq['diff'] = orig_seq['revenue_seq'] - orig_seq['revenue_org']
 # Select the title_org, title_seq, and diff 
 titles_diff = orig_seq[['title_org','title_seq','diff']]
 
+## Semi join and anti join
+# Merge employees and top_cust
+empl_cust = employees.merge(top_cust, on='srid', 
+                                 how='left', indicator=True)
+
+# Select the srid column where _merge is left_only
+srid_list = empl_cust.loc[empl_cust['_merge'] == 'left_only', 'srid']
+
+# Get employees not working with top customers
+print(employees[employees['srid'].isin(srid_list)])
+
+
 # Print the first rows of the sorted titles_diff
 print(titles_diff.sort_values("diff",ascending=False).head())
