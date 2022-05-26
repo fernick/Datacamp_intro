@@ -226,3 +226,26 @@ price_diffs = jpm_wells_bac.diff()
 # Plot the price diff of the close of jpm, wells and bac only
 price_diffs.plot(y=['close_jpm','close_wells','close_bac'])
 plt.show()
+
+
+# Merge gdp and recession on date using merge_asof()
+gdp_recession = pd.merge_asof(gdp,recession,on='date')
+
+# Create a list based on the row value of gdp_recession['econ_status']; this list is for coloring
+is_recession = ['r' if s=='recession' else 'g' for s in gdp_recession['econ_status']]
+
+# Plot a bar chart of gdp_recession
+gdp_recession.plot(kind='bar', y='gdp', x='date', color=is_recession, rot=90)
+plt.show()
+
+### Using query to get data from a dataframe
+social_fin.query('financial=="net_income" and value<0')
+Out[6]:
+
+     financial  company  year    value
+14  net_income     snap  2019 -1033660
+29  net_income     snap  2018 -1255911
+34  net_income  twitter  2017  -108063
+44  net_income     snap  2017 -3445066
+49  net_income  twitter  2016  -456873
+59  net_income     snap  2016  -514643
