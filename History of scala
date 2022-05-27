@@ -1,0 +1,22 @@
+## Task one is about loading data in the library
+# Importing pandas
+import pandas as pd
+
+# ... YOUR CODE FOR TASK 1 ...
+
+# Loading in the data
+pulls_one = pd.read_csv('datasets/pulls_2011-2013.csv')
+pulls_two = pd.read_csv('datasets/pulls_2014-2018.csv')
+pull_files = pd.read_csv('datasets/pull_files.csv') 
+
+##check if data has been loaded
+print(pulls_one.head())
+print(pulls_two.head())
+print(pull_files.head())
+
+##task two we will append the two dataset to have complete data; then we need also to convert the date from a string to a date so we can sort afterwards to 
+#to have a proper sorted time series
+pulls = pulls_one.append(pulls_two,ignore_index=True)
+print(pulls.head())
+
+##Converting date to date time from a string
