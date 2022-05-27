@@ -49,3 +49,12 @@ counts = data.groupby(["year","month"])['pid'].count()
 
 # Plot the results
 counts.plot(kind='bar', figsize = (12,4))
+
+# Required for matplotlib
+%matplotlib inline
+
+# Group by the submitter
+by_user = data.groupby(["user"])['pid'].count()
+
+# Plot the histogram
+by_user.plot(kind='hist',bins=30,figsize = (15,10))
