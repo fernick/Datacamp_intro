@@ -58,3 +58,15 @@ by_user = data.groupby(["user"])['pid'].count()
 
 # Plot the histogram
 by_user.plot(kind='hist',bins=30,figsize = (15,10))
+
+# Identify the last 10 pull requests
+last_10 = pulls.nlargest(10,'date')
+print(last_10.head())
+# Join the two data sets
+joined_pr = last_10.merge(pull_files,on='pid')
+
+# Identify the unique files
+files = set(joined_pr['file'])
+
+# Print the results
+print(files)
