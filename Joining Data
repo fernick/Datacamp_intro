@@ -298,3 +298,15 @@ dow_bond = pd.merge_ordered(dji,bond_perc_close,on='date',how="inner",
 dow_bond.plot(y=['close_dow','close_bond'], x='date', rot=90)
 plt.show()
 
+# This is the file we are interested in:
+file = 'src/compiler/scala/reflect/reify/phases/Calculate.scala'
+print(pull_files.columns)
+# Identify the commits that changed the file
+file_pr = data[data['file']== file]
+
+
+# Count the number of changes made by each developer
+author_counts = file_pr.groupby('user').count()
+
+# Print the top 3 developers
+print(author_counts.nlargest(3,'file'))
