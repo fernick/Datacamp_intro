@@ -20,3 +20,4 @@ pulls = pulls_one.append(pulls_two,ignore_index=True)
 print(pulls.head())
 
 ##Converting date to date time from a string
+
