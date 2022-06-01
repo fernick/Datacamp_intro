@@ -33,8 +33,234 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+##Countplot and bar plot for categorical and quantitative variables
+# Create count plot of internet usage
+sns.catplot(x="Internet usage",data=survey_data,kind="count")
+
+
+# Show plot
+plt.show()
+
+# Separate into column subplots based on age category
+sns.catplot(y="Internet usage", data=survey_data,
+            kind="count")
+
+# Show plot
+plt.show()
+
+# Separate into column subplots based on age category
+sns.catplot(y="Internet usage", data=survey_data,
+            kind="count",col="Age Category")
+
+# Show plot
+plt.show()
+
+# Create a bar plot of interest in math, separated by gender
+sns.catplot(x="Gender",y="Interested in Math",data=survey_data,kind="bar")
+
+
+# Show plot
+plt.show()
+
+# List of categories from lowest to highest
+category_order = ["<2 hours", 
+                  "2 to 5 hours", 
+                  "5 to 10 hours", 
+                  ">10 hours"]
+
+# Turn off the confidence intervals
+sns.catplot(x="study_time", y="G3",
+            data=student_data,
+            kind="bar",
+            order=category_order)
+
+# Show plot
+plt.show()
+
+# Specify the category ordering
+study_time_order = ["<2 hours", "2 to 5 hours", 
+                    "5 to 10 hours", ">10 hours"]
+
+# Create a box plot and set the order of the categories
+sns.catplot(x="study_time",y="G3",data=student_data,
+    order=study_time_order,kind="box")
+
+
+
+
+# Show plot
+plt.show()
+
+# Create a box plot with subgroups and omit the outliers
+sns.catplot(x="internet",y="G3",data=student_data,
+    hue="location",kind="box",sym='')
+
+
+# Show plot
+plt.show()
+
 # Create a DataFrame from csv file
 df=pd.read_csv(csv_filepath)
+
+sns.catplot(x="romantic", y="G3",
+            data=student_data,
+            kind="box",
+            whis=0.5)
+plt.show()
+
+# Set the whiskers at the min and max values
+sns.catplot(x="romantic", y="G3",
+            data=student_data,
+            kind="box",
+            whis=[0, 100])
+
+# Show plot
+plt.show()
+
+# Add caps to the confidence interval
+sns.catplot(x="famrel", y="absences",
+			data=student_data,
+            kind="point",capsize=0.2)
+        
+# Show plot
+plt.show()
+
+# Add caps to the confidence interval
+sns.catplot(x="famrel", y="absences",
+			data=student_data,
+            kind="point",capsize=0.2)
+        
+# Show plot
+plt.show()
+
+# Import median function from numpy
+from numpy import median
+
+# Plot the median number of absences instead of the mean
+sns.catplot(x="romantic", y="absences",
+			data=student_data,
+            kind="point",
+            hue="school",
+            ci=None,
+            estimator=median)
+
+# Show plot
+plt.show()
+
+# Set the style to "whitegrid"
+sns.set_style("whitegrid")
+
+# Create a count plot of survey responses
+category_order = ["Never", "Rarely", "Sometimes", 
+                  "Often", "Always"]
+
+sns.catplot(x="Parents Advice", 
+            data=survey_data, 
+            kind="count", 
+            order=category_order)
+
+# Show plot
+plt.show()
+
+# Set the color palette to "Purples"
+sns.set_style("whitegrid")
+sns.set_palette("Purples")
+
+# Create a count plot of survey responses
+category_order = ["Never", "Rarely", "Sometimes", 
+                  "Often", "Always"]
+
+sns.catplot(x="Parents Advice", 
+            data=survey_data, 
+            kind="count", 
+            order=category_order)
+
+# Show plot
+plt.show()
+
+# Set the style to "darkgrid"
+sns.set_style("darkgrid")
+
+# Set a custom color palette
+custom_palette=("#39A7D0","#36ADA4")
+sns.set_palette(custom_palette)
+
+# Create the box plot of age distribution by gender
+sns.catplot(x="Gender", y="Age", 
+            data=survey_data, kind="box")
+
+# Show plot
+plt.show()
+
+# Create scatter plot
+g = sns.relplot(x="weight", 
+                y="horsepower", 
+                data=mpg,
+                kind="scatter")
+
+# Add a title "Car Weight vs. Horsepower"
+g.fig.suptitle("Car Weight vs. Horsepower")
+
+# Show plot
+plt.show()
+
+# Create line plot
+g = sns.lineplot(x="model_year", y="mpg_mean", 
+                 data=mpg_mean,
+                 hue="origin")
+
+# Add a title "Average MPG Over Time"
+g.set_title("Average MPG Over Time")
+
+# Add x-axis and y-axis labels
+g.set(xlabel="Car Model Year",ylabel="Average MPG")
+
+
+# Show plot
+plt.show()
+
+# Create point plot
+sns.catplot(x="origin", 
+            y="acceleration", 
+            data=mpg, 
+            kind="point", 
+            join=False, 
+            capsize=0.1)
+
+# Rotate x-tick labels
+plt.xticks(rotation=90)
+
+# Show plot
+plt.show()
+
+# Set palette to "Blues"
+sns.set_palette("Blues")
+
+# Adjust to add subgroups based on "Interested in Pets"
+g = sns.catplot(x="Gender",
+                y="Age", data=survey_data, 
+                kind="box", hue="Interested in Pets")
+
+# Set title to "Age of Those Interested in Pets vs. Not"
+g.fig.suptitle("Age of Those Interested in Pets vs. Not")
+
+
+# Set the figure style to "dark"
+sns.set_style("dark")
+# Adjust to add subplots per gender
+g = sns.catplot(x="Village - town", y="Likes Techno", 
+                data=survey_data, kind="bar",
+                col="Gender")
+
+# Add title and axis labels
+g.fig.suptitle("Percentage of Young People Who Like Techno", y=1.02)
+g.set(xlabel="Location of Residence", 
+       ylabel="% Who Like Techno")
+
+# Show plot
+plt.show()
+# Show plot
+plt.show()
 
 # Create a count plot with "Spiders" on the x-axis
 sns.countplot(x="Spiders",data=df)
