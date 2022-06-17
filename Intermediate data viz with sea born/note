@@ -1,0 +1,99 @@
+# import all modules
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Read in the DataFrame
+df = pd.read_csv(grant_file)
+
+# Display a Seaborn displot
+sns.displot(df['Award_Amount'])
+plt.show()
+
+# Clear the displot
+plt.clf()
+
+# Display a Seaborn displot
+sns.displot(df['Award_Amount'])
+plt.show()
+
+# Clear the displot
+plt.clf()
+
+# Create a displot of the Award Amount
+sns.displot(df['Award_Amount'],
+             kind='kde',
+             rug=True,
+             fill=True)
+
+# Plot the results
+plt.show()
+
+# Create an lmplot of premiums vs. insurance_losses
+# Create a regression plot of premiums vs. insurance_losses
+sns.regplot(data=df,x='insurance_losses',y='premiums')
+# Display the plot
+plt.show()
+
+# Create an lmplot of premiums vs. insurance_losses
+sns.lmplot(data=df,x='insurance_losses',y='premiums')
+
+# Display the second plot
+plt.show()
+# Create a regression plot with multiple rows
+sns.lmplot(data=df,
+           x="insurance_losses",
+           y="premiums",
+           row="Region")
+
+# Show the plot
+plt.show()
+
+##Styles
+# Plot the pandas histogram
+df['fmr_2'].plot.hist()
+plt.show()
+plt.clf()
+
+# Set the default seaborn style
+sns.set()
+
+# Plot the pandas histogram again
+df['fmr_2'].plot.hist()
+plt.show()
+plt.clf()
+
+# Set the style to white
+sns.set_style('white')
+
+# Create a regression plot
+sns.lmplot(data=df,
+           x='pop2010',
+           y='fmr_2')
+
+# Remove the spines
+sns.despine(left=True)
+
+# Show the plot and clear the figure
+plt.show()
+plt.clf()
+
+# Set style, enable color code, and create a magenta displot
+sns.set(color_codes=True)
+sns.displot(df['fmr_3'], color='m')
+
+# Show the plot
+plt.show()
+
+# Loop through differences between bright and colorblind palettes
+for p in ['bright', 'colorblind']:
+    sns.set_palette(p)
+    sns.displot(df['fmr_3'])
+    plt.show()
+    
+    # Clear the plots    
+    plt.clf()
+    
+#Create and display a palette with 10 colors using the husl system.
+sns.palplot(sns.color_palette('husl',10))
+plt.show()    
