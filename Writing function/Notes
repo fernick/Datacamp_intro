@@ -51,3 +51,65 @@ def build_tooltip(function):
 print(build_tooltip(count_letter))
 print(build_tooltip(range))
 print(build_tooltip(print))
+
+# Use an immutable variable for the default argument
+def better_add_column(values, df=None):
+  """Add a column of `values` to a DataFrame `df`.
+  The column will be named "col_<n>" where "n" is
+  the numerical index of the column.
+
+  Args:
+    values (iterable): The values of the new column
+    df (DataFrame, optional): The DataFrame to update.
+      If no DataFrame is passed, one is created by default.
+
+  Returns:
+    DataFrame
+  """
+  # Update the function to create a default DataFrame
+  if df is None:
+    df = pandas.DataFrame()
+  df['col_{}'.format(len(df.columns))] = values
+  return df
+  
+  ###Using context managers
+  # Open "alice.txt" and assign the file to "file"
+with open('alice.txt') as file:
+  text = file.read()
+
+n = 0
+for word in text.split():
+  if word.lower() in ['cat', 'cats']:
+    n += 1
+
+print('Lewis Carroll uses the word "cat" {} times'.format(n))
+
+image = get_image_from_instagram()
+
+# Time how long process_with_numpy(image) takes to run
+with timer():
+  print('Numpy version')
+  process_with_numpy(image)
+
+# Time how long process_with_pytorch(image) takes to run
+with timer():
+  print('Pytorch version')
+  process_with_pytorch(image)
+
+# Add a decorator that will make timer() a context manager
+@contextlib.contextmanager
+def timer():
+  """Time the execution of a context block.
+
+  Yields:
+    None
+  """
+  start = time.time()
+  # Send control back to the context block
+  yield
+  end = time.time()
+  print('Elapsed: {:.2f}s'.format(end - start))
+
+with timer():
+  print('This should take approximately 0.25 seconds')
+  time.sleep(0.25)
