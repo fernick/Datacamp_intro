@@ -402,4 +402,4 @@ plt.ylabel('Probability of favoring legalization')
 plt.legend()
 plt.show()
 
-##pip install empiricaldist to install a package library
+##pip install empiricaldist to install a package library ; https://greenteapress.com/wp/think-stats-2e/
