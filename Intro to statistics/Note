@@ -99,3 +99,183 @@ groups_4_or_more = size_dist[size_dist['group_size'] >= 4]
 # Sum the probabilities of groups_4_or_more
 prob_4_or_more = np.sum(groups_4_or_more['prob'])
 print(prob_4_or_more)
+
+# Min and max wait times for back-up that happens every 30 min
+min_time = 0
+max_time = 30
+
+# Import uniform from scipy.stats
+from scipy.stats import uniform
+
+# Calculate probability of waiting less than 5 mins
+prob_less_than_5 = uniform.cdf(5,0,30)
+print(prob_less_than_5)
+# Min and max wait times for back-up that happens every 30 min
+min_time = 0
+max_time = 30
+
+# Import uniform from scipy.stats
+from scipy.stats import uniform
+
+# Calculate probability of waiting more than 5 mins
+prob_greater_than_5 = 1-uniform.cdf(5,0,30)
+print(prob_greater_than_5)
+
+# Min and max wait times for back-up that happens every 30 min
+min_time = 0
+max_time = 30
+
+# Import uniform from scipy.stats
+from scipy.stats import uniform
+
+# Calculate probability of waiting 10-20 mins
+prob_between_10_and_20 = uniform.cdf(20,0,30)-uniform.cdf(10,0,30)
+print(prob_between_10_and_20)
+
+# Set random seed to 334
+np.random.seed(334)
+
+# Import uniform
+from scipy.stats import uniform
+
+# Generate 1000 wait times between 0 and 30 mins
+wait_times = uniform.rvs(0, 30, size=1000)
+
+# Create a histogram of simulated times and show plot
+plt.hist(wait_times)
+plt.show()
+
+# Import binom from scipy.stats
+from scipy.stats import binom
+
+# Set random seed to 10
+np.random.seed(10)
+
+# Simulate 1 week of 3 deals
+print(binom.rvs(3,0.3,size=1))
+
+# Import binom from scipy.stats
+from scipy.stats import binom
+
+# Set random seed to 10
+np.random.seed(10)
+
+# Simulate 52 weeks of 3 deals
+deals = binom.rvs(3,0.3,size=52)
+
+# Print mean deals won per week
+print(np.mean(deals))
+# Probability of closing 3 out of 3 deals
+prob_3 = binom.pmf(3,3,0.3)
+
+print(prob_3)
+# Probability of closing <= 1 deal out of 3 deals
+prob_less_than_or_equal_1 = binom.cdf(1,3,0.3)
+
+print(prob_less_than_or_equal_1)
+# Probability of closing > 1 deal out of 3 deals
+prob_greater_than_1 = 1-binom.cdf(1,3,0.3)
+
+print(prob_greater_than_1)
+# Expected number won with 30% win rate
+won_30pct = 3 * 0.3
+print(won_30pct)
+
+# Expected number won with 25% win rate
+won_25pct = 3 * 0.25
+print(won_25pct)
+
+# Expected number won with 35% win rate
+won_35pct = 3 * 0.35
+print(won_35pct)
+
+#Normal distribution
+# Histogram of amount with 10 bins and show plot
+amir_deals['amount'].hist(bins=10)
+plt.show()
+
+# Probability of deal > 1000
+prob_over_1000 = 1-norm.cdf(1000,5000,2000)
+
+print(prob_over_1000)
+# Probability of deal < 7500
+prob_less_7500 = norm.cdf(7500, 5000, 2000)
+
+print(prob_less_7500)
+# Probability of deal between 3000 and 7000
+prob_3000_to_7000 = norm.cdf(7000,5000,2000) - norm.cdf(3000,5000,2000)
+
+print(prob_3000_to_7000)
+# Calculate amount that 25% of deals will be less than
+pct_25 = norm.ppf(0.25,5000,2000)
+
+print(pct_25)
+# Calculate new average amount
+new_mean = 5000 * 1.2
+
+# Calculate new standard deviation
+new_sd = 2000 * 1.30
+
+# Simulate 36 new sales
+new_sales = norm.rvs(new_mean,new_sd,size=36)
+
+# Create histogram and show
+plt.hist(new_sales)
+plt.show()
+
+# Create a histogram of num_users and show
+amir_deals['num_users'].hist()
+plt.show()
+# Set seed to 104
+np.random.seed(104)
+
+# Sample 20 num_users with replacement from amir_deals
+samp_20 = amir_deals['num_users'].sample(20,replace=True)
+
+# Take mean of samp_20
+print(np.mean(samp_20))
+
+# Set seed to 104
+np.random.seed(104)
+
+# Sample 20 num_users with replacement from amir_deals and take mean
+samp_20 = amir_deals['num_users'].sample(20, replace=True)
+np.mean(samp_20)
+
+# Set seed to 104
+np.random.seed(104)
+
+sample_means = []
+# Loop 100 times
+for i in range(100):
+  # Take sample of 20 num_users
+  samp_20 = amir_deals['num_users'].sample(20, replace=True)
+  # Calculate mean of samp_20
+  samp_20_mean = np.mean(samp_20)
+  # Append samp_20_mean to sample_means
+  sample_means.append(samp_20_mean)
+  
+# Convert to Series and plot histogram
+sample_means_series = pd.Series(sample_means)
+sample_means_series.hist()
+# Show plot
+plt.show()
+
+# Set seed to 321
+np.random.seed(321)
+
+sample_means = []
+# Loop 30 times to take 30 means
+for i in range(30):
+  # Take sample of size 20 from num_users col of all_deals with replacement
+  cur_sample = all_deals['num_users'].sample(20, replace=True)
+  # Take mean of cur_sample
+  cur_mean = np.mean(cur_sample)
+  # Append cur_mean to sample_means
+  sample_means.append(cur_mean)
+
+# Print mean of sample_means
+print(np.mean(sample_means))
+
+# Print mean of num_users in amir_deals
+print(np.mean(amir_deals['num_users']))
