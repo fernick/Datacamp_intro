@@ -279,3 +279,91 @@ print(np.mean(sample_means))
 
 # Print mean of num_users in amir_deals
 print(np.mean(amir_deals['num_users']))
+
+# Import poisson from scipy.stats
+from scipy.stats import poisson
+
+# Probability of 5 responses
+prob_5 = poisson.pmf(5,4)
+
+print(prob_5)
+# Import poisson from scipy.stats
+from scipy.stats import poisson
+
+# Probability of 5 responses
+prob_coworker = poisson.pmf(5,5.5)
+
+print(prob_coworker)
+# Import poisson from scipy.stats
+from scipy.stats import poisson
+
+# Probability of 2 or fewer responses
+prob_2_or_less = poisson.cdf(2,4)
+
+print(prob_2_or_less)
+# Import poisson from scipy.stats
+from scipy.stats import poisson
+
+# Probability of > 10 responses
+prob_over_10 = 1-poisson.cdf(10,4)
+
+print(prob_over_10)
+# Import expon from scipy.stats
+from scipy.stats import expon
+
+# Print probability response takes < 1 hour
+print(expon.cdf(1, scale=2.5))
+# Import expon from scipy.stats
+from scipy.stats import expon
+
+# Print probability response takes > 4 hours
+print(1-expon.cdf(4,scale=2.5))
+# Import expon from scipy.stats
+from scipy.stats import expon
+
+# Print probability response takes 3-4 hours
+print(expon.cdf(4,scale=2.5) - expon.cdf(3,scale=2.5))
+
+#Correlation and experimental design
+# Create a scatterplot of happiness_score vs. life_exp and show
+sns.scatterplot(y='happiness_score',x='life_exp',data=world_happiness,ci=None)
+
+# Show plot
+plt.show()
+# Create scatterplot of happiness_score vs life_exp with trendline
+sns.lmplot(x='life_exp', y='happiness_score', data=world_happiness, ci=None)
+
+# Show plot
+plt.show()
+
+# Correlation between life_exp and happiness_score
+cor = world_happiness['life_exp'].corr(world_happiness['happiness_score'])
+
+print(cor)
+# Scatterplot of gdp_per_cap and life_exp
+sns.scatterplot(x='gdp_per_cap', y='life_exp', data=world_happiness)
+
+# Show plot
+plt.show()
+  
+# Correlation between gdp_per_cap and life_exp
+cor = world_happiness['gdp_per_cap'].corr(world_happiness['life_exp'])
+
+print(cor)
+# Scatterplot of happiness_score vs. gdp_per_cap
+sns.scatterplot(y='happiness_score', x='gdp_per_cap', data=world_happiness)
+plt.show()
+
+# Calculate correlation
+cor = world_happiness['gdp_per_cap'].corr(world_happiness['happiness_score'])
+print(cor)
+# Create log_gdp_per_cap column
+world_happiness['log_gdp_per_cap'] = np.log(world_happiness['gdp_per_cap'])
+
+# Scatterplot of log_gdp_per_cap and happiness_score
+sns.scatterplot(y='happiness_score', x='log_gdp_per_cap', data=world_happiness)
+plt.show()
+
+# Calculate correlation
+cor = world_happiness['log_gdp_per_cap'].corr(world_happiness['happiness_score'])
+print(cor)
